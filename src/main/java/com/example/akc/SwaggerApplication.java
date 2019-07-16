@@ -3,6 +3,8 @@ package com.example.akc;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,6 +21,8 @@ public class SwaggerApplication {
         SpringApplication.run(SwaggerApplication.class, args);
     }
 
+    @ApiOperation("查询图书信息")
+    @ApiImplicitParam(name = "id",value = "图书ID",dataType = "String",paramType = "query")
     @GetMapping("/book/{id}")
     public Book book(){
         Book book = new Book();
@@ -29,6 +33,7 @@ public class SwaggerApplication {
         return book;
     }
 
+    @ApiOperation("添加图书信息")
     @PostMapping("/add")
     public Boolean addBook(){
         return true;
